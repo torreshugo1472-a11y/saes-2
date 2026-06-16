@@ -1,0 +1,100 @@
+/* style.css - Tema Oficial SAES IPN */
+
+:root {
+    --ipn-guinda: #6c1c38; /* Guinda oficial del IPN */
+    --ipn-guinda-oscuro: #4a1326;
+    --ipn-blanco: #ffffff;
+    --ipn-fondo: #f4f6f9;
+    --ipn-texto: #333333;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--ipn-fondo);
+    color: var(--ipn-texto);
+    margin: 0;
+    padding: 30px;
+}
+
+h2, h3 {
+    color: var(--ipn-guinda);
+    border-bottom: 2px solid var(--ipn-guinda);
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+/* Diseño de la Tabla de Calificaciones */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: var(--ipn-blanco);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+th {
+    background-color: var(--ipn-guinda);
+    color: var(--ipn-blanco);
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Diseño de Formularios y Botones */
+form {
+    background-color: var(--ipn-blanco);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+button {
+    background-color: var(--ipn-guinda);
+    color: var(--ipn-blanco);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--ipn-guinda-oscuro);
+}
+
+input[type="file"] {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+a {
+    color: var(--ipn-guinda);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #cccccc;
+    margin: 25px 0;
+}

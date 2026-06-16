@@ -12,9 +12,10 @@ if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] != 'gestion') {
 <head>
     <meta charset="UTF-8">
     <title>Panel de Gestión - SAES 2.0</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Bienvenido, Área de Gestión (<?php echo $_SESSION['nombre']; ?>)</h2>
+    <h2>Bienvenido, Área de Gestión (<?php echo htmlspecialchars($_SESSION['nombre']); ?>)</h2>
     <a href="logout.php">Cerrar Sesión</a>
     <hr>
     
@@ -29,16 +30,17 @@ if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] != 'gestion') {
         <label>Edad:</label><br>
         <input type="number" name="edad" required><br><br>
         
-        <label>Contraseña (Regla escolar: Mayúscula, minúscula, número y símbolo):</label><br>
+        <label>Contraseña (Mayúscula, minúscula, número y símbolo):</label><br>
         <input type="password" name="contrasena" required><br><br>
 
-        <label>Foto de Perfil (La subiremos a la nube más adelante):</label><br>
+        <label>Foto de Perfil:</label><br>
         <input type="file" name="foto_perfil" accept="image/*"><br><br>
         
         <button type="submit">Registrar Alumno</button>
     </form>
-</body>
-<hr>
+
+    <hr>
+    
     <h3>Asignar Materia y Calificaciones a un Alumno</h3>
     <form action="asignar_calificacion.php" method="POST">
         <label>Boleta del Alumno:</label><br>
@@ -47,7 +49,7 @@ if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] != 'gestion') {
         <label>ID de la Materia (Ej. MAT01):</label><br>
         <input type="text" name="id_materia" required><br><br>
         
-        <label>Nombre de la Materia (Ej. Computación en la Nube):</label><br>
+        <label>Nombre de la Materia:</label><br>
         <input type="text" name="nombre_materia" required><br><br>
         
         <label>Parcial 1:</label> 
@@ -61,4 +63,5 @@ if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] != 'gestion') {
         
         <button type="submit">Guardar Calificaciones</button>
     </form>
+</body>
 </html>

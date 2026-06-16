@@ -26,6 +26,7 @@ $materias = $stmt_materias->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Mi Perfil - SAES 2.0</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Bienvenido al SAES 2.0, <?php echo htmlspecialchars($alumno['nombre_completo']); ?></h2>
@@ -37,9 +38,9 @@ $materias = $stmt_materias->fetchAll(PDO::FETCH_ASSOC);
     <p>Archivo actual guardado: <strong><?php echo htmlspecialchars($alumno['foto_perfil']); ?></strong></p>
     
     <form action="subir_foto.php" method="POST" enctype="multipart/form-data">
-        <label>Actualizar foto (Se subirá a la nube en el siguiente paso):</label><br>
-        <input type="file" name="nueva_foto" accept="image/*" required><br><br>
-        <button type="submit">Subir a la nube</button>
+        <label for="foto">Selecciona tu nueva foto:</label><br><br>
+        <input type="file" name="foto" id="foto" accept="image/*" required><br><br>
+        <button type="submit">Subir a la Nube ☁️</button>
     </form>
 
     <hr>

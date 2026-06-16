@@ -12,6 +12,7 @@ if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] != 'directivo') {
 <head>
     <meta charset="UTF-8">
     <title>Panel de Directivo - SAES 2.0</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Bienvenido, Directivo <?php echo $_SESSION['nombre']; ?></h2>
@@ -34,5 +35,6 @@ if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] != 'directivo') {
         
         <button type="submit">Registrar Personal de Gestión</button>
     </form>
+
 </body>
 </html>

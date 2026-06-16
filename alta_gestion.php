@@ -8,6 +8,8 @@ if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] != 'directivo') {
     exit();
 }
 
+$mensaje = ""; // Inicializamos la variable
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $identificador = $_POST['identificador'];
     $nombre_completo = $_POST['nombre_completo'];
@@ -21,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tiene_especial  = preg_match('@[^\w]@', $contrasena_plana); // Busca símbolos
 
     if (!$tiene_mayuscula || !$tiene_minuscula || !$tiene_numero || !$tiene_especial || strlen($contrasena_plana) < 8) {
-        echo "<h3>⚠️ Error de Seguridad</h3>";
-        echo "<p>La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial.</p>";
-        echo "<a href='admin.php'>Volver al panel</a>";
+        $mensaje = "<h3>⚠️ Error de Seguridad</h3>
+                    <p>La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial.</p>
+                    <br><a href='admin.php'><button>Volver al panel</button></a>";
     } else {
         // Si pasó la prueba, la encriptamos para no guardarla en texto plano
         $contrasena_cifrada = password_hash($contrasena_plana, PASSWORD_DEFAULT);
@@ -40,12 +42,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ':rol' => $rol
             ]);
             
-            echo "<h3>✅ Usuario de Gestión registrado con éxito.</h3>";
-            echo "<a href='admin.php'>Regresar al panel</a>";
+            $mensaje = "<h3>✅ Usuario de Gestión registrado con éxito.</h3>
+                        <br><a href='admin.php'><button>Regresar al panel</button></a>";
         } catch(PDOException $e) {
-            echo "<h3>❌ Error al registrar en la base de datos: </h3>" . $e->getMessage();
-            echo "<br><a href='admin.php'>Regresar al panel</a>";
+            $mensaje = "<h3>❌ Error al registrar en la base de datos: </h3><p>" . $e->getMessage() . "</p>
+                        <br><a href='admin.php'><button>Regresar al panel</button></a>";
         }
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta de Gestión - SAES 2.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div style='text-align: center; margin-top: 50px;'>
+        <?php 
+            if(!empty($mensaje)) {
+                echo $mensaje;
+            }
+        ?>
+    </div>
+</body>
+</html>

@@ -8,6 +8,8 @@ if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] != 'gestion') {
     exit();
 }
 
+$mensaje = ""; // 1. Inicializamos la variable
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $boleta = $_POST['boleta'];
     $id_materia = $_POST['id_materia'];
@@ -36,15 +38,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ':p2' => $p2,
                 ':p3' => $p3
             ]);
-            echo "<h3>✅ Materia y calificaciones asignadas con éxito a la boleta $boleta.</h3>";
+            
+            // 3. Éxito: Guardamos el mensaje y le ponemos el botón
+            $mensaje = "<h3>✅ Materia y calificaciones asignadas con éxito a la boleta $boleta.</h3>
+                        <br><a href='gestion.php'><button>Asignar otra materia</button></a>";
         } else {
-            echo "<h3>❌ Error: No se encontró ningún alumno registrado con esa boleta.</h3>";
+            // 4. Error: Alumno no encontrado
+            $mensaje = "<h3>❌ Error: No se encontró ningún alumno registrado con esa boleta.</h3>
+                        <br><a href='gestion.php'><button>Regresar al panel</button></a>";
         }
-        echo "<br><a href='gestion.php'>Regresar al panel</a>";
 
     } catch(PDOException $e) {
-        echo "<h3>❌ Error de Base de Datos: </h3>" . $e->getMessage();
-        echo "<br><a href='gestion.php'>Regresar al panel</a>";
+        // 5. Error de Base de Datos
+        $mensaje = "<h3>❌ Error de Base de Datos: </h3><p>" . $e->getMessage() . "</p>
+                    <br><a href='gestion.php'><button>Regresar al panel</button></a>";
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignar Calificaciones - SAES 2.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div style='text-align: center; margin-top: 50px;'>
+        <?php 
+            if(!empty($mensaje)) {
+                echo $mensaje;
+            }
+        ?>
+    </div>
+</body>
+</html>

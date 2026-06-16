@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>SAES 2.0 - Iniciar Sesión</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Bienvenido al SAES 2.0</h2>
